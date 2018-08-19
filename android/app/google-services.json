@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "862908272237",
+    "firebase_url": "https://jnlsalon-3daa4.firebaseio.com",
+    "project_id": "jnlsalon-3daa4",
+    "storage_bucket": "jnlsalon-3daa4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862908272237:android:39cd5e34093da7bf",
+        "android_client_info": {
+          "package_name": "com.jnl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862908272237-fahud8s6v2p5eksf4itseo4pbc9t0mcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjyPGCgd_X4927bd9WvalTidsEaF6aCj0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
