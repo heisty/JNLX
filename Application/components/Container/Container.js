@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 
 // View Container Parent...
 
-const Container = ({children}) =>{
+const Container = ({children,...props}) =>{
 	return(
-		<View style={styles.container}>
+		<View style={[styles.container,{...props}]}>
 		{children}
 		</View>
 		);

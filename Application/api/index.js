@@ -5,10 +5,25 @@ exports.CUST_SIGNIN = `${API_URL}/customersignin`;
 exports.CUST_ADDRESS = `${API_URL}/updatecustomeraddress`;
 
 
+// staff signin
+exports.STAFF_SIGNIN = `${API_URL}/signin`;
+
+
 
 // All get data
 // get customer data
 exports.CUST_INFO = `${API_URL}/getcustomerinfo`;
+
+
+
+
+// get cat data
+exports.GET_CAT = `${API_URL}/getcat`;
+
+
+// get service data
+exports.GET_SERVICES = `${API_URL}/services`;
+exports.GET_STYPE = `${API_URL}/getservicetype`;
 
 
 

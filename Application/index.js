@@ -11,7 +11,7 @@ import {
 // imported components
 import {configureStore} from './store';
 import Router from './router';
-console.disableYellowBox = true;
+console.disableYellowBox = !true;
 
 class index extends Component {
   render() {

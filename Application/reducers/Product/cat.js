@@ -1,13 +1,14 @@
 let defaultState = {
-	ltype: null
+
 }
+
 module.exports = (state=defaultState,action)=>{
 	switch(action.type){
-		case "LTYPE": 
-		return{
-			ltype: action.ltype,
-		}
-		default: 
-		return state
+		case "CAT":
+			return {
+				cat: action.category,
+			}
+		default:
+			return state
 	}
 }

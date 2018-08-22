@@ -1,2 +1,2 @@
-import App from './Application/index';
+import App from './Application';
 module.exports = App;

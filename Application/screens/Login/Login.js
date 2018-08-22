@@ -27,6 +27,7 @@ import {
 } from '../../actions/CustomerActions';
 
 
+
 // Program body...
 
 class Login extends Component {
@@ -80,7 +81,7 @@ class Login extends Component {
 
 
     let {
-      header,message
+      header,message,ltype
     } = this.props;
 
     if(header && message) {
@@ -97,6 +98,12 @@ class Login extends Component {
         }
         );
       this.props.dispatch(setAlert(null,null));
+    }
+
+    if(ltype!==null){
+      if(ltype==="customer"){
+          this.navigateStack("USERPANEL");
+      }
     }
 
     return (

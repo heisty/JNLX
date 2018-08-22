@@ -5,12 +5,27 @@ import {
 	CUST_INFO,
 	CUST_UPDATE
 } from '../api';
+import {
+	staffSignIn
+} from './StaffActions';
 import axios from 'axios';
+
 
 export const customerSignup = (username,password,firstname,lastname,email,contact,street,brgy,munc,city)=>{
 	return function(dispatch){
 		return axios.post(CUST_SIGNUP,{username,password,firstname,lastname,email,contact,street,brgy,munc,city}).then((response)=>{
 			let {userid,username} = response.data;
+			dispatch({
+				type: "LTYPE",
+				ltype: "customer"
+			})
+			dispatch({
+				type: "LOGGED_CUSTOMER",
+				userid,
+				username
+
+			});
+
 			dispatch(setAlert("Signup Success","Thank you for signing up."));
 		}).catch((error)=>{
 			console.warn("THIS",error,error.response);
@@ -40,7 +55,8 @@ export const customerSignIn = (username,password) => {
 			dispatch(setAlert("Signin Success","Thank you for signing in."));
 
 		}).catch((error)=>{
-			dispatch(setAlert("Signin Failed","We cannot sign you in."));
+			dispatch(staffSignIn(username,password));
+			//dispatch(setAlert("Signin Failed","We cannot sign you in."));
 		})
 	}
 }

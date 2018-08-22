@@ -24,6 +24,12 @@ import Pending from '../screens/UserDashboard/Orders/Pending';
 import Recent from '../screens/UserDashboard/Recent';
 import Rejected from '../screens/UserDashboard/Recent/Rejected';
 
+// home screen
+import Service from '../screens/Home/Service';
+import Purchase from '../screens/Home/Service/Purchase';
+import Review from '../screens/Home/Service/Review';
+import Success from '../screens/Home/Service/Success';
+
 const userPanel = createBottomTabNavigator({
 	Home: {
 		screen: Home,
@@ -198,6 +204,30 @@ const userNavigation = createStackNavigator({
 		screen: RecentNav,
 		navigationOptions: {
 			title: 'Recent Appointments',
+		}
+	},
+	Service: {
+		screen: Service,
+		navigationOptions: {
+			title: 'Service',
+		}
+	},
+	Purchase: {
+		screen: Purchase,
+		navigationOptions: {
+			title: 'Purchase',
+		}
+	},
+	Review: {
+		screen: Review,
+		navigationOptions: {
+			title: 'Review',
+		}
+	},
+	Success: {
+		screen: Success,
+		navigationOptions: {
+			header: ()=>null
 		}
 	}
 },{
