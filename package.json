@@ -11,6 +11,7 @@
     "prop-types": "^15.6.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-datepicker": "^1.7.2",
     "react-native-facebook-login": "^1.6.1",
     "react-native-firebase": "^4.3.8",
     "react-native-text-input-mask": "^0.8.0",

@@ -25,11 +25,7 @@ export const getServiceType = (service) =>{
 		return axios.post(GET_STYPE,{service}).then((response)=>{
 			let types = response.data;
 
-			let data = types.map(function(item){
-				return {
-					title: item.types[].title,
-				}
-			});
+			
 
 			types=data;
 

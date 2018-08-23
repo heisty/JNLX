@@ -80,6 +80,11 @@ class Home extends Component {
       cat,
       service
     } = this.props;
+    let date = new Date();
+    let inMinutes = date.getHours();
+    if(inMinutes>12) inMinutes-=12;
+    inMinutes*=60;
+    let schedTime = inMinutes+date.getMinutes();
     return (
       <Container>
       <ScrollView>
@@ -107,7 +112,7 @@ class Home extends Component {
           />
           </Card>
           <Card marginTop={10}>
-           <Text style={{fontWeight: 'bold'}}>{this.state.activeTitle} Services</Text>
+           <Text style={{fontWeight: 'bold'}}>{this.state.activeTitle} Services at {schedTime}</Text>
           </Card>
           
       	</Card>

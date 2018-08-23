@@ -15,6 +15,12 @@ exports.STAFF_SIGNIN = `${API_URL}/signin`;
 exports.CUST_INFO = `${API_URL}/getcustomerinfo`;
 
 
+// get scheduled employees
+exports.GET_SCHEDULED = `${API_URL}/getscheduledemployees`;
+exports.GET_LATER_SCHEDULED = `${API_URL}/getlaterscheduled`;
+exports.GET_NEVER = `${API_URL}/getneveravailable`;
+
+
 
 
 // get cat data
