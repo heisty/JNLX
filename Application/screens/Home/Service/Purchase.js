@@ -11,7 +11,8 @@ import {
   TimePickerAndroid,
   FlatList,
   ToastAndroid,
-  Alert
+  Alert,
+  CheckBox
 
 } from 'react-native';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
@@ -51,29 +52,41 @@ class Purchase extends Component {
 
   componentDidMount(){
     this.timer = setInterval(()=>{
+      this.defaultOnLoad();
+    },1500)
+  }
+  defaultOnLoad = ()=> {
     let date = new Date();
     let day = date.getDay();
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     day = days[day];
+    
+    
     let time = date.getHours();
     let suffix = "AM";
     if(time>12){
       time-=12;
       suffix="PM";
     }
-    time = time * 60 + date.getMinutes();
+
+    let mints = date.getMinutes();
+    time = time * 60 + mints;
     this.props.dispatch(getScheduledEmployees(day,time,suffix));
     this.props.dispatch(getLaterScheduled(day,time,suffix));
     this.props.dispatch(getNever(day,time,suffix));
-    console.warn(day,time);
-    },1500)
+    console.warn(day,time,suffix);
+
+    let finaleTime = `${date.getHours()}:${date.getMinutes()}`;
+    this.setState({day:day,selectedTime:finaleTime});
   }
   constructor(props) {
     super(props);
   
     this.state = {
       language: null,
-      selectedTime:null
+      selectedTime:null,
+      day:null,
+      checked: false,
     };
   }
 	openTimePicker = ()=>{
@@ -194,6 +207,47 @@ class Purchase extends Component {
     navigate('Review');
   }
 
+  handleDate = (date) =>{
+    this.setState({selectedTime: date,checked:false});
+
+    clearInterval(this.timer);
+    this.timer=null;
+    let _date = new Date(null);
+
+    let day = this.state.day;
+
+    // string manipulation
+    let date_field = date.split(':');
+    let hours = date_field[0];
+    let min = date_field[1];
+    let suffix = "AM";
+    if(hours>12){
+      hours-=12;
+      suffix="PM";
+    }
+    let time = (hours*60)+parseInt(min);
+   
+    console.warn("SELECTED TIME",hours,min,time,suffix);
+
+    this.props.dispatch(getScheduledEmployees(day,time,suffix));
+    this.props.dispatch(getLaterScheduled(day,time,suffix));
+    this.props.dispatch(getNever(day,time,suffix));
+
+  }
+
+  handleChecked=()=>{
+    clearInterval(this.timer);
+    this.timer=null;
+     if(this.state.checked===false){
+      this.defaultOnLoad();
+
+    }
+    this.setState({
+      checked: !this.state.checked,
+    })
+
+   
+  }
   render() {
   	const {
   		width,
@@ -204,6 +258,9 @@ class Purchase extends Component {
       L_scheduled_staff,
       N_scheduled_staff
     } = this.props;
+
+
+
     return (
       <Container>
       	<Card width={width} height={60} backgroundColor="darkblue" alignItems="center" justifyContent="center" >
@@ -217,7 +274,7 @@ class Purchase extends Component {
         value={this.state.selectedTime}
         date={this.state.selectedTime}
         mode="time"
-        is24Hour={false}
+        is24Hour={true}
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         customStyles={{
@@ -232,8 +289,11 @@ class Purchase extends Component {
           }
           // ... You can check the source to find the other keys.
         }}
-        onDateChange={(time) => {this.setState({selectedTime: time})}}
+        onDateChange={this.handleDate}
       />
+
+      <CheckBox value={this.state.checked} onValueChange={this.handleChecked}/>
+      <Text>Right Now</Text>
 
       	</Card>
 

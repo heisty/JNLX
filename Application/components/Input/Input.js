@@ -1,7 +1,9 @@
 import React from 'react';
 import {
 	TouchableHighlight,
-	TextInput
+	TextInput,
+	Image,
+	View
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -11,10 +13,9 @@ import styles from './styles';
 const Input = ({children,...props}) =>{
 	return(
 
-			<TouchableHighlight style={[styles.input,{...props}]}>
-				<TextInput {...props} underlineColorAndroid="transparent"/>
-			</TouchableHighlight>
-
+			
+				<TextInput style={{...props}} {...props} underlineColorAndroid="transparent"/>
+			
 		);
 }
 

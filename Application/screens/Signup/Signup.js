@@ -6,7 +6,8 @@ import {
   StyleSheet,
 	Text,
 	Dimensions,
-	ScrollView
+	ScrollView,
+  Image
 } from 'react-native';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import TextInputMask from 'react-native-text-input-mask';
@@ -36,8 +37,7 @@ class Signup extends Component {
         brgy: null,
         munc: null,
         city: null,
-        isContinue: false,
-        isBack: null,
+        is1stform: false,
       };
     }
 
@@ -90,11 +90,30 @@ class Signup extends Component {
     };
 
     handleIsContinue = () =>{
-      const {
+      if(this.state.is1stform){
+
+         const {
         firstname,lastname,email,contact,street,brgy,munc,city
       } = this.state;
       const {navigate} = this.props.navigation;
       navigate('Csignup',{firstname,lastname,email,contact,street,brgy,munc,city});
+
+      
+      }
+      this.setState({
+        is1stform: true,
+      })
+     
+
+    }
+
+    handleGoBack=()=>{
+      this.setState({
+        is1stform: false,
+      })
+    }
+
+    handleDoneSubmit=()=>{
 
     }
 
@@ -107,43 +126,63 @@ class Signup extends Component {
   		width
   	} = Dimensions.get('window');
 
+    const {
+      is1stform
+    } = this.state;
+
 
 
 
     return (
-      <Container>
+      <Container  backgroundColor='#E91E63'>
       <ScrollView>
-      	<Card alignItems="center" justifyContent="center">
+        
+      	<Card flex={1}  backgroundColor='#E91E63' alignItems="center" justifyContent="center">
 
-      		<Card marginTop='5%' borderRadius={6} width={width-20} borderColor="gray" height='100%' backgroundColor='#FFFFFF'>
+      		<Card borderRadius={6} width={width} height='100%'  alignItems="center" justifyContent="center">
             <Text style={styles.header}>Sign Up</Text>
             <Card marginTop={10} alignItems="center" justifyContent="center">
-              <Text>First Name</Text>
-              <Input onChangeText={this.handleFirstname} value={this.state.firstname} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>Last Name</Text>
-              <Input onChangeText={this.handleLastname} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>Email Address</Text>
-              <Input onChangeText={this.handleEmail} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>Contact No.</Text>
-              <TextInputMask onChangeText={this.handleContact}  width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"  mask={"+63 9[00] [0000] [000]"} />
-              <Text>Address</Text>
-              <Text>Street</Text>
-              <Input onChangeText={this.handleStreet} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>Barangay</Text>
-              <Input onChangeText={this.handleBrgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>Municipality</Text>
-              <Input onChangeText={this.handleMunc} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>City</Text>
-              <Input onChangeText={this.handleCity} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-              <Button onPress={()=>this.handleIsContinue()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={30} backgroundColor="royalblue">
-                <Text style={styles.btnText}>CONTINUE</Text>
+              {!is1stform && 
+                <Card>
+                        <Input  placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleFirstname} value={this.state.firstname} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF" placeholder="First Name"/>
+                          
+                                        
+                        <Input  placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleLastname} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF" placeholder="Last Name"/>
+                          
+                                        
+                        <Input  placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleEmail} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF" placeholder="Email Address"/>
+                          
+                                       
+                        <TextInputMask  placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleContact} underlineColorAndroid="transparent"  width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  mask={"+63 9[00] [0000] [000]"} placeholder="Contact No."/>
+                  </Card>
+                          }           
+       {is1stform &&  
+                <Card marginTop={10} alignItems="center" justifyContent="center">
+                        <Text style={{color:'#FFFFFF'}}>Please add your address, for instance of Home Service.</Text>
+                        <Text style={{color:'#FFFFFF'}}>Or you can click continue to fill up later</Text>
+                          <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleStreet} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="House No./Street"/>
+            
+                          
+                          <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleBrgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Barangay"/>
+            
+                          
+                          <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleMunc} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Municipality"/>
+            
+                         
+                          <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleCity} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="City"/>
+                </Card>
+            }
+              <Button backgroundColor="#880E4F" onPress={()=>this.handleIsContinue()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
+                <Text style={{fontSize:16,fontWeight:'bold',color:'#FFFFFF'}}>CONTINUE</Text>
               </Button>
+
+              {is1stform &&
+                <Button backgroundColor="#E91E63" onPress={()=>this.handleGoBack()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
+                              <Text style={{fontSize:16,fontWeight:'bold',color:'#FFFFFF'}}>Go Back, I want to edit something</Text>
+                            
+                  </Button>
+                }
+
             </Card>
       		</Card>
           

@@ -1,10 +1,12 @@
 import React from 'react';
 import {
 	Image,
+	Dimensions
 } from 'react-native';
 import {
 	createStackNavigator,
-	createBottomTabNavigator
+	createBottomTabNavigator,
+	createDrawerNavigator
 } from 'react-navigation';
 import {
 	createMaterialTopTabNavigator
@@ -30,6 +32,26 @@ import Purchase from '../screens/Home/Service/Purchase';
 import Review from '../screens/Home/Service/Review';
 import Success from '../screens/Home/Service/Success';
 
+//  staff
+
+import StaffHome from '../screens/Staff/StaffHome';
+import Profile from '../screens/Staff/StaffHome/Profile';
+
+const staffNavigation = createDrawerNavigator({
+	S_Home: {
+		screen: StaffHome,
+		navigationOptions: {
+			
+		}
+	}
+},{
+
+  contentComponent: Profile,
+  drawerWidth: 300
+
+});
+
+
 const userPanel = createBottomTabNavigator({
 	Home: {
 		screen: Home,
@@ -50,6 +72,7 @@ const userPanel = createBottomTabNavigator({
 },{
 	
   initialRouteName: 'Home',
+  
   tabBarOptions:{
 		
 		showIcon:true,
@@ -64,7 +87,8 @@ const loginNavigation = createMaterialTopTabNavigator({
 	Signup: {
 		screen: Signup,
 		navigationOptions: {
-			tabBarLabel: 'Sign Up'
+			tabBarLabel: 'Sign Up',
+			tabBarColor: "red",
 		}
 	},
 	Login: {
@@ -77,15 +101,17 @@ const loginNavigation = createMaterialTopTabNavigator({
 	initialRouteName: 'Signup',
 	tabBarOptions: {
 		style: {
-			backgroundColor: '#FFFFFF',
+			backgroundColor: '#880E4F',
 
 		},
 		indicatorStyle: {
-				backgroundColor: 'green',
+				height: null,
+				top: 0,
+				backgroundColor: '#E91E63',
 			},
 		labelStyle: {
-				color: 'green',
-				fontSize: 11,
+				color: '#FFFFFF',
+				fontSize: 15,
 				
 			}
 	}
@@ -101,7 +127,7 @@ const SignStack = createStackNavigator({
 	Csignup: {
 		screen: Csignup,
 		navigationOptions: {
-			title: 'Complete Signup'
+			header: ()=> null
 		}
 	},
 },{
@@ -243,7 +269,7 @@ const MainNavigation = createStackNavigator({
 	AUTH: {
 		screen: SignStack,
 		navigationOptions: {
-			header: ()=> null
+			header: ()=> <Image resizeMode="contain" style={{width:'100%'.width,height:'20%'}} source={require('JNL/ICONS/app/lyn.jpg')} />
 		}
 	},
 	USERPANEL: {
@@ -251,9 +277,15 @@ const MainNavigation = createStackNavigator({
 		navigationOptions: {
 			header: ()=> null
 		}
+	},
+	STAFFWITHHOME: {
+		screen: staffNavigation,
+		navigationOptions: {
+			header: ()=>null
+		}
 	}
 },{
-	initialRouteName: 'USERPANEL',
+	initialRouteName: 'STAFFWITHHOME',
 })
 
 module.exports =  MainNavigation;

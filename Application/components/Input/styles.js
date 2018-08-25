@@ -4,7 +4,7 @@ import {
 
 const styles = StyleSheet.create({
 	input: {
-
+		flexDirection: 'row',
 	}
 });
 

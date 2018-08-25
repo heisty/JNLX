@@ -107,18 +107,17 @@ class Login extends Component {
     }
 
     return (
-    	<Container>
+    	<Container backgroundColor='#E91E63'>
         <Card alignItems="center"  justifyContent="center">
-        <Card marginTop={20} borderRadius={6} width={width-20} backgroundColor='#FFFFFF' alignItems="center" justifyContent="center">
+        <Card marginTop={20} borderRadius={6} width={width-20} backgroundColor='#E91E63' alignItems="center" justifyContent="center">
         <Card height='80%' >
           <Text style={styles.header}>Sign In</Text>
-          <Text>Username {this.state.message}</Text>
-              <Input onChangeText={this.handleUsername} value={this.state.username} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-              <Text>Password</Text>
-              <Input secureTextEntry={true} onChangeText={this.handlePassword} value={this.state.password} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-              <Button onPress={()=>this.handleComplete()} alignItems="center" justifyContent="center" marginTop={10} width={width-50} height={30} backgroundColor="royalblue">
-                <Text style={styles.btnText}>Sign IN</Text>
+          
+             <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleBrgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Username"/>
+            
+              <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleBrgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Password"/>
+           <Button backgroundColor="#880E4F" onPress={()=>this.handleIsContinue()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
+                <Text style={{fontSize:16,fontWeight:'bold',color:'#FFFFFF'}}>CONTINUE</Text>
               </Button>
               </Card>
               

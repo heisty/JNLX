@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
 	header: {
 		
 		marginTop: 10,
-		color: 'limegreen',
+		color: '#FFFFFF',
 		fontSize: 20,
 		fontWeight: 'bold',
 		textAlign: 'center'

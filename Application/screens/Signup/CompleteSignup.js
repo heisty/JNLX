@@ -122,23 +122,29 @@ class CompleteSignup extends Component {
 
     return (
      	<Container>
-     		<Card marginTop={10} backgroundColor='#FFFFFF' alignItems="center" justifyContent="center">
-     		<Card height='100%'>
-     		  <Text>Username {this.state.message}</Text>
-              <Input onChangeText={this.handleUsername} value={this.state.username} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+     		<Card flex={1}  backgroundColor='#E91E63' alignItems="center" justifyContent="center">
 
-              <Text>Password</Text>
-              <Input secureTextEntry={true} onChangeText={this.handlePassword} value={this.state.password} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+      		<Card borderRadius={6} width={width} height='100%'  alignItems="center" justifyContent="center">
+            <Text style={styles.header}>Sign Up</Text>
+            <Text style={[styles.header,{fontSize:12}]}>Last Step to Sign Up </Text>
+            <Text style={[styles.header,{fontSize:12}]}>Great!, Now just enter your username and password so you can login on any devices.</Text>
+            <Card marginTop={10} alignItems="center" justifyContent="center">
 
-              <Text>Confirm Password</Text>
-              <Input secureTextEntry={true} onChangeText={this.handleConfirmPassword} value={this.state.confirmpassword} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-
-             {(password===confirmpassword) && <Button onPress={()=>this.handleComplete()} alignItems="center" justifyContent="center" marginTop={10} width={width-50} height={30} backgroundColor="royalblue">
-                             <Text style={styles.btnText}>COMPLETE SIGNUP</Text>
-                           </Button>}
-              </Card>
+     		 
+     		 <Input marginTop={10} placeholderTextColor="white" fontSize={16}  onChangeText={this.handleUsername} width={width-50} height={35} borderWidth={1} borderColor="#FFFFFF" borderRadius={5} placeholder="Desired Username"/>
+     		 <Input marginTop={10} placeholderTextColor="white" secureTextEntry={true} fontSize={16} onChangeText={this.handlePassword}  width={width-50} height={35} borderWidth={1} borderColor="#FFFFFF" borderRadius={5} placeholder="Password"/>
+     		 <Input marginTop={10} placeholderTextColor="white" secureTextEntry={true} fontSize={16}  onChangeText={this.handleConfirmPassword} width={width-50} height={35} borderWidth={1} borderColor="#FFFFFF" borderRadius={5} placeholder="Confirm Password"/>
               
-     		</Card>
+              
+                                   
+             {(password===confirmpassword) &&  <Button backgroundColor="#880E4F" onPress={()=>this.handleIsContinue()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
+                <Text style={{fontSize:16,fontWeight:'bold',color:'#FFFFFF'}}>COMPLETE SIGNUP</Text>
+              </Button>}
+              </Card>
+              </Card>
+              </Card>
+        
+     		
      	</Container>
     );
   }
