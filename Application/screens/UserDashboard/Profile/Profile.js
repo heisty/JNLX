@@ -45,44 +45,32 @@ class Profile extends Component {
 
 
     return (
-      <Container >
-      <Card width={width} flexDirection="row" backgroundColor="#FFFFFF" alignItems="flex-end" justifyContent="flex-end">
-      	<Button onPress={()=> navigate('CHANGEPASS')} alignItems="center" justifyContent="center" width={100} height={40} backgroundColor="green">
-      		<Text style={{color: '#FFFFFF',fontWeight: 'bold',textAlign:'center'}}>Change Password</Text>
-      	</Button>
-      	<Button onPress={()=> navigate('EDITPROFILE')} alignItems="center" justifyContent="center" width={100} height={40} backgroundColor="green">
-      		<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Edit Profile</Text>
-      	</Button>
-      	</Card>
-      	<Card flex={1} backgroundColor="#FFFFFF" alignItems="center" justifyContent="center">
-      		<Image resizeMode="contain" style={{width: 128,height:128,margin: 10}} source={require('JNL/ICONS/USERPANEL/round.png')} />
-      		<Text>{firstname} {lastname}</Text>
-      		<Text>{contact}</Text>
-      		<Text>{email}</Text>
-      	</Card>
+      <Container backgroundColor="#FFFFFF">
+      
+      <Card alignItems="center" justifyContent="center">
+        <Card width={width} height={400} backgroundColor="#E91E63" alignItems="center" justifyContent="center">
 
-      	<Card flex={1} >
-      		<Card backgroundColor="gray" >
-      			<Text style={{color: '#FFFFFF'}}>ADDRESS</Text>
-      		</Card>
+          <Image resizeMode="contain" style={{width:128,height:128}} source={require('JNL/ICONS/USERPANEL/round.png')} />
+          <Text style={{color:'#FFFFFF',fontSize:15}}>{firstname} {lastname}</Text>
+          <Text style={{color:'#FFFFFF',fontSize:15}}>CP# {contact}</Text>
+          <Text style={{color:'#FFFFFF',fontSize:15}}>Email at {email}</Text>
+          <Text style={{color:'#FFFFFF',fontSize:15}}>Address</Text>
+          <Text style={{color:'#FFFFFF',fontSize:15}}>{street}, {brgy}, {munc}, {city}</Text>
 
-      		<Card flex={1} backgroundColor="#FFFFFF">
-      			<Text>House No./Street</Text>
-      			<Text style={{textAlign:'center'}}>{street}</Text>
-      		</Card>
-      		<Card flex={1} backgroundColor="#FFFFFF">
-      			<Text>Brgy.</Text>
-      			<Text style={{textAlign:'center'}}>{brgy}</Text>
-      		</Card>
-      		<Card flex={1} backgroundColor="#FFFFFF">
-      			<Text>Municipality</Text>
-      			<Text style={{textAlign:'center'}}>{munc}</Text>
-      		</Card>
-      		<Card flex={1} backgroundColor="#FFFFFF">
-      			<Text>City</Text>
-      			<Text style={{textAlign:'center'}}>{city}</Text>
-      		</Card>
-      	</Card>
+        </Card>
+
+
+   
+
+      
+        
+      </Card>
+
+      <Card marginTop={3} flex={1} alignItems='flex-end' justifyContent='flex-end' />
+
+            <Button onPress={()=>navigate("EDITPROFILE")} alignItems='center' justifyContent='center' width={width} height={50} backgroundColor="#E91E63">
+            <Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Edit Profile</Text>
+            </Button>
 
       </Container>
     );

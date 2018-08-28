@@ -17,7 +17,7 @@ import {
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import TextInputMask from 'react-native-text-input-mask';
 //import DatePicker from 'react-native-ui-xg';
-//import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 // imported components
 import Container from '../../../components/Container';
 import Card from '../../../components/Card';
@@ -25,67 +25,97 @@ import styles from './styles';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 
+import {
+  setAppointment
+} from '../../../actions/Schedule';
+
 class Review extends Component {
 
   handleComplete = () =>{
-    const {
-      navigate
-    } = this.props.navigation;
+       const {
+      service,
+      staff,
+      userid,
+      username,
+      date,
+      day,
+      status,
+      accepted,
+      duration,
+      time,
+      suffix
+    } = this.props.navigation.state.params;
 
-    navigate('Success');
+    this.props.dispatch(setAppointment(userid,username,staff._id,service._id,service.title,date,status,accepted,time,duration,suffix));
+
+    this.props.navigation.navigate('Success');
   }
   render() {
   	const {
   		width,height
   	} = Dimensions.get('window');
+
+    const {
+      service,
+      staff,
+      userid,
+      username,
+      day,
+      status,
+      accepted,
+      duration,
+      time,
+      suffix
+    } = this.props.navigation.state.params;
+
     return (
       <Container>
       <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-      <Card width={width} height={60} backgroundColor="darkblue" alignItems="center" justifyContent="center" >
+      <Card width={width} height={60} backgroundColor="#E91E63" alignItems="center" justifyContent="center" >
       			<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Review Order</Text>
       	</Card>
 
-      	<Card>
-      		<Text style={{color: '#000000',fontWeight: 'bold'}}>Just tell us when, and you're good to go. </Text>
-      	</Card>
+      	
 
-      	<Card width={width} height={60} backgroundColor="royalblue" alignItems="center" justifyContent="center">
+      	<Card width={width} height={40} backgroundColor="#C2185B" alignItems="center" justifyContent="center">
 
       		<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>So this is what you ordered. Right?</Text>
 
       	</Card>
 
       	<Card  alignItems="center" justifyContent="center">
-      		<Image resizeMode="contain" style={{marginTop: 5,width:128,height:128}} source={require('JNL/ICONS/USERPANEL/round.png')}/>
-      		<Text style={{marginTop: 10}}>Salon Service</Text>
-      		<Text>Massage by James Bond</Text>
-      		<Text>June 11, 2018 at 1:00 PM</Text>
-      		<Text>PHP 200</Text>
+      		<Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Service Mode</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>Salon</Text>
+          <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Service</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{service.title}</Text>
+          <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Staff</Text>
+          <Text>James Bond</Text>
+          <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Scheduled Time</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{time}</Text>
+          <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Price</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>PHP{service.price}</Text>
       	</Card>
-
-      	<Card alignItems="center" justifyContent="center" marginTop={10} width={width} height={30} backgroundColor="royalblue">
+ {1==0 &&
+      <Card>
+      	<Card alignItems="center" justifyContent="center" marginTop={10} width={width} height={30} backgroundColor="#C2185B">
       		<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Confirm your address</Text>
       	</Card>
-      <Card alignItems="center" justifyContent="center">
-      	<Text>House No./Street</Text>
-      	<Input borderRadius={6} textAlign="center" width={width-40} height={50} borderWidth={0.5} borderColor="darkblue"/>
-
-      	<Text>Brgy</Text>
-      	<Input borderRadius={6} textAlign="center" width={width-40} height={50} borderWidth={0.5} borderColor="darkblue"/>
-
-      	<Text>Munc</Text>
-      	<Input borderRadius={6} textAlign="center" width={width-40} height={50} borderWidth={0.5} borderColor="darkblue"/>
-
-      	<Text>City</Text>
-      	<Input borderRadius={6} textAlign="center" width={width-40} height={50} borderWidth={0.5} borderColor="darkblue"/>
-      </Card>
-
+     
+        <Card alignItems="center" justifyContent="center">
+              <Input   fontSize={16} marginTop={10} textAlign="center"  width={width-50} height={35}  borderWidth={0.6} borderColor="#C2185B" placeholder="Street/House No."/>
+              <Input   fontSize={16} marginTop={10} textAlign="center"  width={width-50} height={35}  borderWidth={0.6} borderColor="#C2185B" placeholder="Brgy"/>
+              <Input   fontSize={16} marginTop={10} textAlign="center"  width={width-50} height={35}  borderWidth={0.6} borderColor="#C2185B" placeholder="Municipality"/>
+              <Input   fontSize={16} marginTop={10} textAlign="center"  width={width-50} height={35}  borderWidth={0.6} borderColor="#C2185B" placeholder="City"/>
+                              
+            </Card>
+          </Card>
+      }
       	
 
       	</ScrollView>
       	<Card flex={1} alignItems='flex-end' justifyContent='flex-end' />
 
-      	<Button onPress={()=>this.handleComplete()} alignItems='center' justifyContent='center' width={width} height={50} backgroundColor="royalblue">
+      	<Button onPress={()=>this.handleComplete()} alignItems='center' justifyContent='center' width={width} height={50} backgroundColor="#C2185B">
       	<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Complete Order</Text>
       	</Button>
       </Container>
@@ -93,5 +123,10 @@ class Review extends Component {
   }
 }
 
+let mapStateToProps = (state) =>{
+    return {
 
-module.exports = Review;
+    }
+}
+
+module.exports = connect(mapStateToProps)(Review);

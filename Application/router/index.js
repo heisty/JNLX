@@ -1,7 +1,9 @@
 import React from 'react';
 import {
 	Image,
-	Dimensions
+	Dimensions,
+	View,
+	Text
 } from 'react-native';
 import {
 	createStackNavigator,
@@ -11,6 +13,9 @@ import {
 import {
 	createMaterialTopTabNavigator
 } from 'react-navigation-tabs';
+
+
+import Button from '../components/Button';
 
 // imported components / screens
 import Login from '../screens/Login';
@@ -37,6 +42,81 @@ import Success from '../screens/Home/Service/Success';
 import StaffHome from '../screens/Staff/StaffHome';
 import Profile from '../screens/Staff/StaffHome/Profile';
 
+import Appointment from '../screens/Staff/Appointment';
+import Active from '../screens/Staff/Appointment/Active';
+import StaffReport from '../screens/Staff/Report';
+import StaffHistory from '../screens/Staff/Report/History';
+import StaffSettings from '../screens/Staff/Settings';
+import StaffProfile from '../screens/Staff/StaffProfile';
+
+
+
+
+
+
+const staffAppointment = createMaterialTopTabNavigator({
+	Pending: {
+		screen: Appointment
+	},
+	Active: {
+		screen: Active
+	}
+},{
+	initialRouteName:'Pending',
+	tabBarOptions: {
+		style: {
+			backgroundColor: '#C2185B',
+
+		},
+		indicatorStyle: {
+				height: null,
+				top: 0,
+				backgroundColor: '#E91E63',
+			},
+		labelStyle: {
+				color: '#FFFFFF',
+				fontSize: 12,
+				fontWeight: 'bold',
+				
+			}
+	}
+});
+
+
+const staffReport = createMaterialTopTabNavigator({
+	StaffReport: {
+		screen: StaffReport,
+		navigationOptions: {
+			tabBarLabel: 'Account Reports',
+		}
+	},
+	StaffHistory: {
+		screen: StaffHistory,
+		navigationOptions: {
+			tabBarLabel: 'History',
+		}
+	}
+},{
+	initialRouteName:'StaffReport',
+	tabBarOptions: {
+		style: {
+			backgroundColor: '#C2185B',
+
+		},
+		indicatorStyle: {
+				height: null,
+				top: 0,
+				backgroundColor: '#E91E63',
+			},
+		labelStyle: {
+				color: '#FFFFFF',
+				fontSize: 12,
+				fontWeight: 'bold',
+				
+			}
+	}
+});
+
 const staffNavigation = createDrawerNavigator({
 	S_Home: {
 		screen: StaffHome,
@@ -51,8 +131,45 @@ const staffNavigation = createDrawerNavigator({
 
 });
 
+const staffMainNavigation = createStackNavigator({
+	StaffMain: {
+		screen: staffNavigation,
+		navigationOptions: {
+			header: ()=> null
+		}
 
-const userPanel = createBottomTabNavigator({
+	},
+	Appointment: {
+		screen: staffAppointment,
+		navigationOptions: {
+			header: ()=> null
+		}
+	},
+	StaffProfile: {
+		screen: StaffProfile,
+		navigationOptions: {
+			header: ()=> null
+		}
+	},
+	Settings: {
+		screen: StaffSettings,
+		navigationOptions: {
+			headerTitle: 'Settings',
+			color: '#00000'
+		}
+	},
+	StaffReport: {
+		screen: staffReport,
+		navigationOptions: {
+			header: ()=> null
+		}
+	}
+},{
+	initialRouteName: 'StaffMain'
+});
+
+
+const userPanel = createDrawerNavigator({
 	Home: {
 		screen: Home,
 		navigationOptions: {
@@ -60,26 +177,10 @@ const userPanel = createBottomTabNavigator({
 			tabBarIcon: ({ tintColor, focused }) => <Image resizeMode="contain" style={{width: 24,height: 24,}} source={require('JNL/ICONS/USERPANEL/home.png')}/>
 		}
 	},
-	UserDashboard: {
-		screen: UserDashboard,
-		navigationOptions: {
-			tabBarLabel: 'MY ACCOUNT',
-			tabBarIcon: ({ tintColor, focused }) => <Image resizeMode="contain" style={{width: 24,height: 24,}} source={require('JNL/ICONS/USERPANEL/round.png')}/>
-
-		}
-
-	}
+	
 },{
 	
-  initialRouteName: 'Home',
-  
-  tabBarOptions:{
-		
-		showIcon:true,
-		indicatorStyle: {backgroundColor: '#FFFFFF'},
-		labelStyle: {fontSize: 9,fontWeight: 'bold',fontFamily: 'Oswald-Light'}
-
-	}
+  contentComponent: UserDashboard,
 
 })
 
@@ -155,10 +256,10 @@ const Order = createMaterialTopTabNavigator({
 
 		},
 		indicatorStyle: {
-				backgroundColor: 'green',
+				backgroundColor: '#E91E63',
 			},
 		labelStyle: {
-				color: 'green',
+				color: '#E91E63',
 				fontSize: 11,
 				
 			}
@@ -184,10 +285,10 @@ const RecentNav = createMaterialTopTabNavigator({
 
 		},
 		indicatorStyle: {
-				backgroundColor: 'green',
+				backgroundColor: '#E91E63',
 			},
 		labelStyle: {
-				color: 'green',
+				color: '#E91E63',
 				fontSize: 11,
 				
 			}
@@ -241,7 +342,7 @@ const userNavigation = createStackNavigator({
 	Purchase: {
 		screen: Purchase,
 		navigationOptions: {
-			title: 'Purchase',
+			header: ()=> null
 		}
 	},
 	Review: {
@@ -260,7 +361,7 @@ const userNavigation = createStackNavigator({
 	initialRouteName: 'USERPANEL',
 	navigationOptions: {
 		headerTitleStyle: {
-			color: 'green',
+			color: '#E91E63',
 		}
 	}
 })
@@ -279,13 +380,13 @@ const MainNavigation = createStackNavigator({
 		}
 	},
 	STAFFWITHHOME: {
-		screen: staffNavigation,
+		screen: staffMainNavigation,
 		navigationOptions: {
-			header: ()=>null
+			header: ()=> null
 		}
 	}
 },{
-	initialRouteName: 'STAFFWITHHOME',
+	initialRouteName: 'AUTH',
 })
 
 module.exports =  MainNavigation;

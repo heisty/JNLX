@@ -1,5 +1,6 @@
 import {
-	STAFF_SIGNIN
+	STAFF_SIGNIN,
+	GET_APP
 } from '../api';
 import {
 	setAlert
@@ -20,5 +21,31 @@ export const staffSignIn=(username,password)=>{
 		dispatch(setAlert("Signin Failed","We cannot sign you in."));
 		console.warn("ERROR STAFF SIGN IN",error,error.response);
 	})
+	}
+}
+
+export const getAppointment = (staffid) =>{
+	return function(dispatch){
+		return axios.post(GET_APP,{staffid}).then((response)=>{
+			let {appointment} = response.data;
+
+			let _appointment = appointment.map(function(item){
+				return{
+					app: item.appointment,
+				}
+			})
+
+			appointment=_appointment[0].app;
+
+
+			dispatch({
+				type: "DATA_APP",
+				appointment
+			})
+
+			console.warn(appointment);
+		}).catch((error)=>{
+			console.warn("GA APP",error,error.response);
+		})
 	}
 }

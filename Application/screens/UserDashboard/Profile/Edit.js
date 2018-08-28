@@ -173,30 +173,30 @@ class Edit extends Component {
       <ScrollView>
       		<Card backgroundColor="#FFFFFF" alignItems="center" justifyContent="center">
               <Text>First Name</Text>
-              <Input onChangeText={this.handleFirstname} value={this.state.firstname} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+              <Input onChangeText={this.handleFirstname} value={this.state.firstname} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
       		
 
       		<Text>Last Name</Text>
-              <Input onChangeText={this.handleLastname} value={this.state.lastname} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+              <Input onChangeText={this.handleLastname} value={this.state.lastname} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
 
               <Text>Email Address</Text>
-              <Input onChangeText={this.handleEmail} value={this.state.email} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+              <Input onChangeText={this.handleEmail} value={this.state.email} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
 
               <Text>Contact No.</Text>
-              <TextInputMask onChangeText={this.handleContact} value={this.state.contact}  width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"  mask={"+63 9[00] [0000] [000]"} />
+              <TextInputMask underlineAndroid="transparent" onChangeText={this.handleContact} value={this.state.contact}  width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"  mask={"+63 9[00] [0000] [000]"} />
               <Text>Address</Text>
               <Text>Street</Text>
-              <Input onChangeText={this.handleStreet} value={this.state.street} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+              <Input onChangeText={this.handleStreet} value={this.state.street} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
 
               <Text>Barangay</Text>
-              <Input onChangeText={this.handleBrgy} value={this.state.brgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+              <Input onChangeText={this.handleBrgy} value={this.state.brgy} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
 
               <Text>Municipality</Text>
-              <Input onChangeText={this.handleMunc} value={this.state.munc} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
+              <Input onChangeText={this.handleMunc} value={this.state.munc} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
 
               <Text>City</Text>
-              <Input onChangeText={this.handleCity} value={this.state.city} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="green"/>
-              <Button onPress={()=>this.handleUpdate()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={30} backgroundColor="royalblue">
+              <Input onChangeText={this.handleCity} value={this.state.city} width={width-50} height={35}  borderWidth={0.6} borderColor="#E91E63"/>
+              <Button onPress={()=>this.handleUpdate()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={60} backgroundColor="#E91E63">
                 <Text style={{color: '#FFFFFF'}}>UPDATE</Text>
               </Button>
 

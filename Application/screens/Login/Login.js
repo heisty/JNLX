@@ -104,6 +104,9 @@ class Login extends Component {
       if(ltype==="customer"){
           this.navigateStack("USERPANEL");
       }
+      if(ltype==="staff"){
+          this.navigateStack("STAFFWITHHOME");
+      }
     }
 
     return (
@@ -113,10 +116,10 @@ class Login extends Component {
         <Card height='80%' >
           <Text style={styles.header}>Sign In</Text>
           
-             <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleBrgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Username"/>
+             <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleUsername} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Username"/>
             
-              <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handleBrgy} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Password"/>
-           <Button backgroundColor="#880E4F" onPress={()=>this.handleIsContinue()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
+              <Input placeholderTextColor="white" fontSize={16} marginTop={10} textAlign="center" onChangeText={this.handlePassword} width={width-50} height={35} borderRadius={5} borderWidth={0.6} borderColor="#FFFFFF"  placeholder="Password"/>
+           <Button backgroundColor="#880E4F" onPress={()=>this.handleComplete()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
                 <Text style={{fontSize:16,fontWeight:'bold',color:'#FFFFFF'}}>CONTINUE</Text>
               </Button>
               </Card>
@@ -135,6 +138,7 @@ let mapStateToProps = (state) =>{
     header: state.alert.header,
     message: state.alert.message,
     ltype: state.ltype.ltype,
+
 	}
 }
 

@@ -51,7 +51,7 @@ class Success extends Component {
     return (
       <Container>
       <Card flex={1} alignItems="center" justifyContent="center">
-      <Card height={120} borderRadius={6} width={width-60}  backgroundColor="royalblue">
+      <Card height={120} borderRadius={6} width={width-60}  backgroundColor="#C2185B">
       	<Card alignItems="center" justifyContent="center">
       		<Text style={{color: '#FFFFFF',fontSize: 20,textAlign:"center"}}>ORDER BOOKED</Text>
       		<Text style={{color: '#FFFFFF',fontSize: 10,textAlign:"center"}}>ORDER 8882888</Text>
@@ -63,7 +63,7 @@ class Success extends Component {
 
       <Card flex={1} alignItems='flex-end' justifyContent='flex-end' />
 
-      	<Button onPress={()=>this.navigateStack('USERPANEL')} alignItems='center' justifyContent='center' width={width} height={50} backgroundColor="royalblue">
+      	<Button onPress={()=>this.navigateStack('USERPANEL')} alignItems='center' justifyContent='center' width={width} height={50} backgroundColor="#C2185B">
       	<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Close Window</Text>
       	</Button>
 

@@ -137,7 +137,7 @@ class CompleteSignup extends Component {
               
               
                                    
-             {(password===confirmpassword) &&  <Button backgroundColor="#880E4F" onPress={()=>this.handleIsContinue()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
+             {(password===confirmpassword) &&  <Button backgroundColor="#880E4F" onPress={()=>this.handleComplete()} alignItems="center" justifyContent="center" marginTop={10} width={width-35} height={50} borderRadius={5}>
                 <Text style={{fontSize:16,fontWeight:'bold',color:'#FFFFFF'}}>COMPLETE SIGNUP</Text>
               </Button>}
               </Card>

@@ -8,7 +8,9 @@ exports.CUST_ADDRESS = `${API_URL}/updatecustomeraddress`;
 // staff signin
 exports.STAFF_SIGNIN = `${API_URL}/signin`;
 
+// changepass
 
+exports.CHANGE_PASS = `${API_URL}/changepass`;
 
 // All get data
 // get customer data
@@ -20,6 +22,14 @@ exports.GET_SCHEDULED = `${API_URL}/getscheduledemployees`;
 exports.GET_LATER_SCHEDULED = `${API_URL}/getlaterscheduled`;
 exports.GET_NEVER = `${API_URL}/getneveravailable`;
 
+// schedules
+
+exports.CHECK_APPOINTMENT = `${API_URL}/checkappointment`;
+exports.SET_APPOINTMENT = `${API_URL}/setappointment`;
+
+// get app
+
+exports.GET_APP = `${API_URL}/getmyapp`;
 
 
 
@@ -30,6 +40,8 @@ exports.GET_CAT = `${API_URL}/getcat`;
 // get service data
 exports.GET_SERVICES = `${API_URL}/services`;
 exports.GET_STYPE = `${API_URL}/getservicetype`;
+
+
 
 
 

@@ -1,6 +1,6 @@
 let defaultState = {
-	userid: '5b78d5bf51ce382d30fda641',
-	username: 'Hack',
+	// userid: '5b83d20697495218bc4c7f92',
+	// username: 'Hack',
 }
 
 module.exports = (state=defaultState,action)=>{
