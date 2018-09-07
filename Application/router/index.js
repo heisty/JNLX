@@ -386,7 +386,7 @@ const MainNavigation = createStackNavigator({
 		}
 	}
 },{
-	initialRouteName: 'AUTH',
+	initialRouteName: 'USERPANEL',
 })
 
 module.exports =  MainNavigation;

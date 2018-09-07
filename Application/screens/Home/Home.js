@@ -38,6 +38,10 @@ import {
   getServiceType
 } from '../../actions/Service';
 
+import {
+  getPos
+} from '../../actions/Schedule';
+
 
 class Home extends Component {
 
@@ -69,16 +73,26 @@ class Home extends Component {
     };
   }
   componentWillMount(){
-    this.props.dispatch(getCat());
+    this.props.dispatch(getCat("service"));
     this.handleCatPress("All");
   }
 
   componentDidMount(){
+
+
+      console.warn(this.props.userid);
+    this.reloader = setInterval(()=>{
+      this.props.dispatch(getPos(this.props.userid));
+    },1000)
+
+
+
       this.timerQueue = setInterval(()=>{
           this.setState({
             timerqueue:this.state.timerqueue-1,
 
-          })
+          });
+
 
           if(this.state.timerqueue===0){
         clearInterval(this.timerQueue);
@@ -109,8 +123,8 @@ class Home extends Component {
   serviceClick = (item) =>{
     this.setState({
       as_price:item.price,
-      as_title:item.title,
-      as_desc: item.description,
+      as_title:item.servicename,
+      as_desc: item.servicedescription,
       as_item: item
     })
     this.refs.info.open();
@@ -118,6 +132,14 @@ class Home extends Component {
 
   handleAvailService=(item)=>{
     this.props.navigation.navigate('Purchase',{service:item});
+  }
+
+  componentWillUnmount(){
+
+    clearInterval(this.reloader);
+    this.reloader=null;
+
+
   }
 
 
@@ -130,8 +152,11 @@ class Home extends Component {
 
     const {
       cat,
-      service
+      service,
+      pos,
+      cc
     } = this.props;
+    console.warn("SERVICE:",service);
     let date = new Date();
     let inMinutes = date.getHours();
     if(inMinutes>12) inMinutes-=12;
@@ -145,14 +170,15 @@ class Home extends Component {
             </Button>
             <Text style={{color: '#FFFFFF',fontSize:14,marginLeft:10}}>LadyLyn Salon</Text>
           </Card>
-
+          {pos &&
             <Card width={width} height={150} backgroundColor="#E91E63" alignItems="center" justifyContent="center">
 
               <Text style={{color:'#FFFFFF',fontSize:25}}>Customer Queue</Text>
-              <Text style={{color:'#FFFFFF',fontSize:30}}>5th/20 Customers</Text>
+              <Text style={{color:'#FFFFFF',fontSize:30}}>{pos}/{cc} Appointments</Text>
               <Text style={{color:'#FFFFFF',fontSize:20}}>Waiting Time Estimate: {this.state.timerqueue} seconds</Text>
 
             </Card>
+          }
 
           
 
@@ -179,7 +205,7 @@ class Home extends Component {
             <Button borderWidth={0.6} borderColor="#D81B60" borderRadius={5} padding={10} marginTop={10} marginLeft={5} justifyContent="center" onPress={()=>this.serviceClick(item)} width={width/2.1} height={width/2}  backgroundColor="#FFFFFF"  alignItems="center" >
             
             <Image resizeMode="contain" style={{width:width/2,height:width/4}} source={require('JNL/ICONS/app/base1.png')} />
-            <Text style={{color: '#00000',fontSize:12,fontWeight:'bold'}}>{item.title}</Text>
+            <Text style={{color: '#00000',fontSize:12,fontWeight:'bold'}}>{item.servicename}</Text>
             <Text style={{color: '#00000',fontSize:12,fontWeight:'bold'}}>PHP{item.price}</Text>
 
             </Button>
@@ -262,6 +288,9 @@ let mapStateToProps = (state)=>{
 	return {
 		cat: state.product.cat.cat,
     service: state.product.service.service,
+    pos: state.schedule.schedule.pos,
+    cc: state.schedule.schedule.length,
+    userid: state.customer.login.userid
 	}
 }
 

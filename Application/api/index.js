@@ -30,6 +30,7 @@ exports.SET_APPOINTMENT = `${API_URL}/setappointment`;
 // get app
 
 exports.GET_APP = `${API_URL}/getmyapp`;
+exports.MY_POS = `${API_URL}/mypos`;
 
 
 
@@ -42,7 +43,8 @@ exports.GET_SERVICES = `${API_URL}/services`;
 exports.GET_STYPE = `${API_URL}/getservicetype`;
 
 
-
+// booked
+exports.BOOKED = `${API_URL}/mba`;
 
 
 

@@ -4,9 +4,9 @@ import {
 	GET_NEVER
 } from '../api';
 import axios from 'axios';
-exports.getScheduledEmployees=(day,time,suffix)=>{
+exports.getScheduledEmployees=(day,time,suffix,skill)=>{
 	return function(dispatch){
-		return axios.post(GET_SCHEDULED,{day,time,suffix}).then((response)=>{
+		return axios.post(GET_SCHEDULED,{day,time,suffix,skill}).then((response)=>{
 			let staff = response.data.staff;
 			dispatch({
 				type:"SCHED_STAFF",
@@ -20,9 +20,9 @@ exports.getScheduledEmployees=(day,time,suffix)=>{
 	}
 }
 
-exports.getLaterScheduled=(day,time,suffix)=>{
+exports.getLaterScheduled=(day,time,suffix,skill)=>{
 	return function(dispatch){
-		return axios.post(GET_LATER_SCHEDULED,{day,time,suffix}).then((response)=>{
+		return axios.post(GET_LATER_SCHEDULED,{day,time,suffix,skill}).then((response)=>{
 			let staff = response.data.staff;
 			dispatch({
 				type:"LATER_STAFF",
@@ -36,9 +36,9 @@ exports.getLaterScheduled=(day,time,suffix)=>{
 	}
 }
 
-exports.getNever=(day,time,suffix)=>{
+exports.getNever=(day,time,suffix,skill)=>{
 	return function(dispatch){
-		return axios.post(GET_NEVER,{day,time,suffix}).then((response)=>{
+		return axios.post(GET_NEVER,{day,time,suffix,skill}).then((response)=>{
 			let staff = response.data.staff;
 			dispatch({
 				type:"NEVER_STAFF",

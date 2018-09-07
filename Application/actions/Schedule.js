@@ -1,6 +1,7 @@
 import {
 	CHECK_APPOINTMENT,
-	SET_APPOINTMENT
+	SET_APPOINTMENT,
+	MY_POS
 } from '../api';
 import axios from 'axios';
 
@@ -47,6 +48,25 @@ export const setAppointment = (
 
 		}).catch((error)=>{
 			console.warn("SA error",error,error.response);
+		})
+	}
+}
+
+export const getPos = (userid) =>{
+	return function(dispatch){
+		return axios.post(MY_POS,{userid}).then((response)=>{
+
+			let pos = response.data.pos;
+			let data_n = response.data.data_n;
+			dispatch({
+				type: "POS",
+				pos,
+				data_n
+			})
+			console.warn(pos);
+
+		}).catch((error)=>{
+			console.warn("x",error,error.response);
 		})
 	}
 }

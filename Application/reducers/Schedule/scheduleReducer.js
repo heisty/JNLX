@@ -8,6 +8,11 @@ module.exports = (state=defaultState,action)=>{
 				return {
 					found: action.found,
 				}
+		case "POS": 
+			return{
+				pos: action.pos,
+				length: action.data_n,
+			}
 		default:
 				return state;
 	}

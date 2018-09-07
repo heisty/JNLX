@@ -46,9 +46,9 @@ class Review extends Component {
       suffix
     } = this.props.navigation.state.params;
 
-    this.props.dispatch(setAppointment(userid,username,staff._id,service._id,service.title,date,status,accepted,time,duration,suffix));
+    this.props.dispatch(setAppointment(userid,username,staff._id,service._id,service.servicename,date,status,accepted,time,duration,suffix));
 
-    this.props.navigation.navigate('Success');
+    this.props.navigation.navigate('Success',{staffname:`${staff.firstname} ${staff.lastname}`,servicename:service.servicename,time});
   }
   render() {
   	const {
@@ -65,7 +65,8 @@ class Review extends Component {
       accepted,
       duration,
       time,
-      suffix
+      suffix,
+      mode
     } = this.props.navigation.state.params;
 
     return (
@@ -85,17 +86,17 @@ class Review extends Component {
 
       	<Card  alignItems="center" justifyContent="center">
       		<Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Service Mode</Text>
-      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>Salon</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{mode}</Text>
           <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Service</Text>
-      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{service.title}</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{service.servicename}</Text>
           <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Staff</Text>
-          <Text>James Bond</Text>
+          <Text>{staff.firstname} {staff.lastname}</Text>
           <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Scheduled Time</Text>
-      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{time}</Text>
+      		<Text style={{marginTop: 10,bottomBorderWidth:1}}>{`${Math.floor(time/60)}:${(time%60 < 10) ? `0${time%60}`:time%60}`}</Text>
           <Text style={{fontSize:18,fontWeight:'bold',borderBottomWidth: 1}}>Price</Text>
       		<Text style={{marginTop: 10,bottomBorderWidth:1}}>PHP{service.price}</Text>
       	</Card>
- {1==0 &&
+ {mode==="Home" &&
       <Card>
       	<Card alignItems="center" justifyContent="center" marginTop={10} width={width} height={30} backgroundColor="#C2185B">
       		<Text style={{color: '#FFFFFF',fontWeight: 'bold'}}>Confirm your address</Text>

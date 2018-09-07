@@ -13,6 +13,8 @@ export const getService = (category) =>{
 				type: "SERVICE",
 				service
 			});
+
+			console.warn("inACTIN",service);
 		}).catch((error)=>{
 			console.warn("ERROR GET SERVICE",error,error.response);
 		})

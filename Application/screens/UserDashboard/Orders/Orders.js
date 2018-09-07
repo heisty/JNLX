@@ -20,21 +20,42 @@ import styles from './styles';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 
+// funcs
+
+import {
+  getBooked
+}  from '../../../actions/Product';
+
 class Orders extends Component {
+
+  componentDidMount(){
+ 
+    this.reloader = setInterval(()=>{
+      this.props.dispatch(getBooked(this.props.userid));
+    },1000)
+ 
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.reloader);
+    this.reloader = null;
+  }
+
+
   render() {
   	const {
   		width,
   		height
   	} = Dimensions.get('window');
   	const {
-  		orders
+  		active
   	} = this.props;
     return (
 
     	<Container>
     		
     		<FlatList
-    		data={orders}
+    		data={active}
     		renderItem={({item})=>{
     			return(
 
@@ -66,7 +87,8 @@ class Orders extends Component {
 
 let mapStateToProps = (state) =>{
 	return{
-
+    userid: state.customer.login.userid,
+    active: state.product.service.active,
 	}
 }
 

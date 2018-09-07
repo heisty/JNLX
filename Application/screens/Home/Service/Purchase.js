@@ -59,9 +59,15 @@ class Purchase extends Component {
       suffix_global:suffix,
     })
 
-    this.props.dispatch(getScheduledEmployees(day,time,suffix));
-    this.props.dispatch(getLaterScheduled(day,time,suffix));
-    this.props.dispatch(getNever(day,time,suffix));
+    const {
+      servicename
+    } = this.props.navigation.state.params.service;
+
+    console.warn("REQU",servicename);
+
+    this.props.dispatch(getScheduledEmployees(day,time,suffix,servicename));
+    this.props.dispatch(getLaterScheduled(day,time,suffix,servicename));
+    this.props.dispatch(getNever(day,time,suffix,servicename));
   }
 
   componentDidMount(){
@@ -85,9 +91,16 @@ class Purchase extends Component {
 
     let mints = date.getMinutes();
     time = time * 60 + mints;
-    this.props.dispatch(getScheduledEmployees(day,time,suffix));
-    this.props.dispatch(getLaterScheduled(day,time,suffix));
-    this.props.dispatch(getNever(day,time,suffix));
+
+     const {
+      servicename
+    } = this.props.navigation.state.params.service;
+
+    console.warn("REQU",servicename);
+
+    this.props.dispatch(getScheduledEmployees(day,time,suffix,servicename));
+    this.props.dispatch(getLaterScheduled(day,time,suffix,servicename));
+    this.props.dispatch(getNever(day,time,suffix,servicename));
     console.warn(day,time,suffix);
 
     let finaleTime = `${date.getHours()}:${date.getMinutes()}`;
@@ -562,6 +575,7 @@ class Purchase extends Component {
 
     let suffix=this.state.suffix_global;
     let staff = this.state.staff_;
+    mode="Salon";
 
    
 

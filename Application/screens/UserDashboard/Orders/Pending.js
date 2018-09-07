@@ -19,15 +19,33 @@ import Card from '../../../components/Card';
 import styles from './styles';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
+import {
+  getBooked
+}  from '../../../actions/Product';
 
 class Pending extends Component {
+
+
+  componentDidMount(){
+    
+    this.reloader = setInterval(()=>{
+      this.props.dispatch(getBooked(this.props.userid));
+    },1000)
+ 
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.reloader);
+    this.reloader = null;
+  }
+
   render() {
   	const {
   		width,
   		height
   	} = Dimensions.get('window');
   	const {
-  		orders
+  		pending
   	} = this.props;
     return (
 
@@ -36,7 +54,7 @@ class Pending extends Component {
     		
 
     		<FlatList
-    		data={orders}
+    		data={pending}
     		renderItem={({item})=>{
     			return(
 
@@ -45,9 +63,9 @@ class Pending extends Component {
     			<Card marginLeft={10} marginTop={20} height={64} width={64} backgroundColor="gray">
     		</Card>
     		<Card marginLeft={10} marginTop={20}> 
-    				<Text>Massage by Thea Cruz</Text>
+    				<Text>{item.servicename} by {item.staffname}</Text>
     				<Text>Salon Service</Text>
-    				<Text>Scheduled 06/26/2018 at 6:00 PM</Text>
+    				<Text>Scheduled 06/26/2018 at {item.time} PM</Text>
     				<Card flexDirection="row">
     					<Button alignItems="center" justifyContent="center" width={100} height={40} borderRadius={8} backgroundColor="red" >
     						<Text style={{color: '#FFFFFF',fontWeight: 'bold',textAlign:'center'}}>CANCEL</Text>
@@ -71,7 +89,8 @@ class Pending extends Component {
 
 let mapStateToProps = (state) =>{
 	return{
-
+    userid: state.customer.login.userid,
+    pending: state.product.service.pending,
 	}
 }
 
