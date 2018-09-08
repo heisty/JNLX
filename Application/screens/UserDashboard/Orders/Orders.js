@@ -13,6 +13,7 @@ import {
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import TextInputMask from 'react-native-text-input-mask';
 import {connect} from 'react-redux';
+import moment from 'moment-timezone';
 // imported components
 import Container from '../../../components/Container';
 import Card from '../../../components/Card';
@@ -57,6 +58,19 @@ class Orders extends Component {
     		<FlatList
     		data={active}
     		renderItem={({item})=>{
+          let date_ret = moment.tz(item.date,"Asia/Manila").toDate();
+          let month = date_ret.getMonth()+1;
+          let dd = date_ret.getDate();
+          let yr = date_ret.getFullYear();
+
+          let ret_ = `${month}-${dd}-${yr}`;
+
+          let datenow = new Date();
+          let mnow = datenow.getMonth()+1;
+          let dnow = datenow.getDate();
+          let yrnow = datenow.getFullYear();
+
+          let rnow =  `${mnow}-${dd}-${yr}`;
     			return(
 
     <Card backgroundColor="#FFFFFF" width={width} height={120} borderBottomWidth={0.5} borderBottomColor="gray">
@@ -64,9 +78,9 @@ class Orders extends Component {
     			<Card marginLeft={10} marginTop={20} height={64} width={64} backgroundColor="gray">
     		</Card>
     		<Card marginLeft={10} marginTop={20}> 
-    				<Text>Massage by Thea Cruz</Text>
-    				<Text>Salon Service</Text>
-    				<Text>Scheduled 06/26/2018 at 6:00 PM</Text>
+    				<Text>{item.servicename} by {item.staffname}</Text>
+    				<Text>{item.servicetype}</Text>
+    				<Text>Active {(ret_===rnow) ? "TODAY":ret_} at {`${Math.floor(item.time/60)}:${(item.time%60)<10?`0${item.time%60}`:item.time%60}`} {item.suffix}</Text>
     				<Text>Waiting Time: 1h 2m</Text>
     		</Card>
     		</Card>

@@ -47,6 +47,13 @@ exports.GET_STYPE = `${API_URL}/getservicetype`;
 exports.BOOKED = `${API_URL}/mba`;
 
 
+// cancel
+exports.CANCEL = `${API_URL}/cancelorder`;
+
+// update
+exports.UPDATE_ORDER = `${API_URL}/updateorder`;
+
+
 
 // All update
 // update customer info

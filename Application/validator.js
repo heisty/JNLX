@@ -1,0 +1,3 @@
+export valiDate = (date) => {
+	
+}

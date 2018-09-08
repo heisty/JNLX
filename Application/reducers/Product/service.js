@@ -27,16 +27,16 @@ module.exports = (state=defaultState,action)=>{
 			axe.forEach(function(item){
 				item.appointment.map(function(itemx){
 
-					if(itemx.status==="pending"){
+					if(itemx.accepted==="false"){
 
 						let name = {
 							staffname: `${item.firstname} ${item.lastname}`
 						}
 
 						pending.push(itemx);
-						pending.push(name);
+					
 					}
-					if(itemx.status==="active"){
+					if(itemx.accepted==="true"){
 						active.push(itemx);
 					}
 

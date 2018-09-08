@@ -1,7 +1,9 @@
 import {
 	CHECK_APPOINTMENT,
 	SET_APPOINTMENT,
-	MY_POS
+	MY_POS,
+	CANCEL,
+	UPDATE_ORDER
 } from '../api';
 import axios from 'axios';
 
@@ -22,9 +24,11 @@ export const checkAppointment = (day,time,suffix) => {
 export const setAppointment = (
 	userid,
 	username,
-	staffid,
 	serviceid,
 	servicename,
+	servicetype,
+	staffid,
+	staffname,
 	date,
 	status,
 	accepted,
@@ -36,9 +40,11 @@ export const setAppointment = (
 		return axios.post(SET_APPOINTMENT,{
 	userid,
 	username,
-	staffid,
 	serviceid,
 	servicename,
+	servicetype,
+	staffid,
+	staffname,
 	date,
 	status,
 	accepted,
@@ -64,6 +70,27 @@ export const getPos = (userid) =>{
 				data_n
 			})
 			console.warn(pos);
+
+		}).catch((error)=>{
+			console.warn("x",error,error.response);
+		})
+	}
+}
+
+export const cancelOrder = (staffid,appid) =>{
+	return function(dispatch){
+		return axios.post(CANCEL,{staffid,appid}).then((response)=>{
+			console.warn("SCESS CANCEL");
+		}).catch((error)=>{
+			console.warn("x",error,error.response);
+		})
+	}
+}
+
+export const updateOrder = (staffid,appid,time,suffix,date) =>{
+	return function(dispatch){
+		console.log(staffid,appid,time,suffix,date);
+		return axios.post(UPDATE_ORDER,{staffid,appid,time,suffix,date}).then((response)=>{
 
 		}).catch((error)=>{
 			console.warn("x",error,error.response);

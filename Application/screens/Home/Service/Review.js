@@ -33,6 +33,7 @@ class Review extends Component {
 
   handleComplete = () =>{
        const {
+      
       service,
       staff,
       userid,
@@ -45,8 +46,8 @@ class Review extends Component {
       time,
       suffix
     } = this.props.navigation.state.params;
-
-    this.props.dispatch(setAppointment(userid,username,staff._id,service._id,service.servicename,date,status,accepted,time,duration,suffix));
+    let mode = "Salon";
+    this.props.dispatch(setAppointment(userid,username,service._id,service.servicename,`${mode} Service`,staff._id,`${staff.firstname} ${staff.lastname}`,date,status,accepted,time,duration,suffix));
 
     this.props.navigation.navigate('Success',{staffname:`${staff.firstname} ${staff.lastname}`,servicename:service.servicename,time});
   }
